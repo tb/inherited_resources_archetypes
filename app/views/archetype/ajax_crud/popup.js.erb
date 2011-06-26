@@ -1,0 +1,24 @@
+$.colorbox({
+  html:"<%= yield :html %>",
+  close: false,
+  opacity:	0.65,
+  onComplete: function(){
+    var loadedContent = $('#cboxLoadedContent');
+    loadedContent.width( loadedContent.width() + 20 );
+    loadedContent.height( loadedContent.height() + 20 );
+    $('#cboxWrapper').height( $('#cboxWrapper').height() - 20 );
+    $('#cboxContent').height( $('#cboxContent').height() - 20 );
+    $('#cboxMiddleLeft').height( $('#cboxMiddleLeft').height() - 20 );
+    $('#cboxMiddleRight').height( $('#cboxMiddleRight').height() - 20 );
+    $('#cboxLoadedContent').height( $('#cboxLoadedContent').height() - 20 );
+    $('#colorbox').height( $('#colorbox').height() - 20 );
+
+    <%= yield :onload %>
+    corners();
+},
+  onClosed: function(){
+    <%= yield :onclose %>
+  }
+});
+
+<%= yield %>

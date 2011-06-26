@@ -1,0 +1,5 @@
+<% title @title||resource_class.to_s.pluralize %>
+
+<div id="<%= dom_class(resource_class).pluralize %>" class="list">
+  <%= render :partial => 'list' %>
+</div>

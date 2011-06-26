@@ -1,0 +1,2 @@
+$.colorbox.close();
+$("#<%= dom_class(resource_class).pluralize %>").find("#<%= dom_id(resource) %>").html("<%= escape_javascript(render(:partial => 'list_item', :locals => { :resource => resource })) %>");

@@ -1,0 +1,10 @@
+$.colorbox({
+  html:"<%= escape_javascript(render(:partial => "form")) -%>",
+  close: function(){
+    return "X";
+  },
+  opacity:	0.65,
+  onComplete: function(){
+    $("#cboxContent").find("input:visible:first").focus();
+  }
+});

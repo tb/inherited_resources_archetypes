@@ -1,0 +1,39 @@
+= Archetype
+
+Archetype is a tool to support archetype-based apprach to share controllers and views behaviours.
+
+It can help you to manage controllers and views code with reuse in mind.
+
+= Installation
+
+Add do Gemfile
+
+    gem 'archetype_helpers', :git => 'git://github.com/tb/archetype_helpers.git'
+
+= Usage
+
+Create an initializer with following code:
+
+    Archetype::Base.register_archetype :crud do
+      inherit_resources
+      append_view_path Helpers::Resolver.new("archetype/crud")
+      include Helpers::InheritedResources::OnUpdateSuccessRedirectToEdit
+      include Helpers::InheritedResources::OnCreateSuccessRedirectToEdit
+      include Helpers::PerPage
+    end
+
+Now you can define your controller, for example:
+
+    class UsersController < ApplicationController
+      archetype :crud
+    end
+
+The action templates for the action will be taked from "views/archetype/crud".
+Archetype comes with a default set of vies for 'crud' archetype, so unless
+you want to overwrite those, all you have to do is define partials like those:
+
+    _form.html.erb
+    _list.html.erb
+    _list_item.erb
+
+Copyright (c) 2011 Tomasz Bąk, released under the MIT license
